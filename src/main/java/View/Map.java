@@ -72,8 +72,8 @@ public class Map extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        player1.setBounds(player.getCurrentHorizontalPosition() -23, player.getCurrentVerticalPosition()-23, 46, 46);
+        player1.setIcon(player.getPic());
+        player1.setBounds(player.getCurrentHorizontalPosition() - 23, player.getCurrentVerticalPosition() - 23, 46, 46);
         // add(player1);
 
 
