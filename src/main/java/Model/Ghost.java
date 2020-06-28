@@ -12,7 +12,7 @@ public class Ghost implements Movable {
     private int picCounter = 0;
     private int movesCounter = 0;
     private boolean ascending = true;
-    ImageIcon pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\blinkyClosed.png");
+    ImageIcon pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\down1.png");
 
 
     public ImageIcon getPic() {
@@ -80,19 +80,17 @@ public class Ghost implements Movable {
     public void picChooser()
     {movesCounter++;
         if (picCounter == 0) {picCounter++; ascending = true;}
-        else if (picCounter == 3) {picCounter--; ascending = false;}
+        else if (picCounter == 2) {picCounter--; ascending = false;}
         else if (picCounter == 1 && ascending == true) picCounter++;
-        else if (picCounter == 2 && ascending == true) picCounter++;
         else if (picCounter == 1 && ascending == false) picCounter--;
-        else if (picCounter == 2 && ascending == false) picCounter--;
     }
 
     public void nextPic () {
-        if (picCounter == 0) pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\blinkyClosed.png");
-        else if (lastMove == "left") pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\blinkyLeft"+picCounter+".png");
-        else if (lastMove == "right") pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\blinkyRight"+picCounter+".png");
-        else if (lastMove == "up") pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\blinkyUp"+picCounter+".png");
-        else if (lastMove == "down") pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\blinkyDown"+picCounter+".png");
+      //  if (picCounter == 0) pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\down1.png");
+        if (lastMove == "left") pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\left"+picCounter+".png");
+        else if (lastMove == "right") pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\right"+picCounter+".png");
+        else if (lastMove == "up") pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\up"+picCounter+".png");
+        else if (lastMove == "down") pic = new ImageIcon("src\\main\\resources\\ghosts\\blinky\\down"+picCounter+".png");
     }
 
 
