@@ -1,5 +1,6 @@
 package View;
 
+import Model.Ghost;
 import Model.MapStructure;
 import Model.Player;
 
@@ -10,10 +11,13 @@ public class Map extends JPanel {
     private JFrame window;
     static Player player = new Player();
     JLabel player1 = new JLabel(player.getPic());
+    static Ghost ghost = new Ghost();
+    JLabel ghost1 = new JLabel(ghost.getPic());
 
     public Map(JFrame window) {
         this.window = window;
         add(this.player1);
+        add(this.ghost1);
         setLayout(null);
         MapStructure.generatePacmanMap();
         Listener moves = new Listener(this);
@@ -58,11 +62,15 @@ public class Map extends JPanel {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
+            
             player.movePlayer();
+            
+            ghost.moveGhost();
             repaint();
         }
     }
+    
+    
 
     @Override
     public Dimension getPreferredSize() {
@@ -74,6 +82,8 @@ public class Map extends JPanel {
         super.paintComponent(g);
         player1.setIcon(player.getPic());
         player1.setBounds(player.getCurrentHorizontalPosition() - 23, player.getCurrentVerticalPosition() - 23, 46, 46);
+        ghost1.setIcon(ghost.getPic());
+        ghost1.setBounds(ghost.getCurrentHorizontalPosition() - 23, ghost.getCurrentVerticalPosition() - 23, 46, 46);
         // add(player1);
 
 
