@@ -14,6 +14,7 @@ public class Map extends JPanel {
     static Ghost ghost = new Ghost();
     JLabel ghost1 = new JLabel(ghost.getPic());
 
+
     public Map(JFrame window) {
         this.window = window;
         add(this.player1);
@@ -55,18 +56,20 @@ public class Map extends JPanel {
 
 
     public void animation() {
-
-        while (true) {
+    	boolean notCatched = true;
+        while (notCatched=true) {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             
-            player.movePlayer();
             
+            player.movePlayer();
             ghost.moveGhost();
+            ghost02.moveGhost();
             repaint();
+
         }
     }
     
@@ -84,8 +87,9 @@ public class Map extends JPanel {
         player1.setBounds(player.getCurrentHorizontalPosition() - 23, player.getCurrentVerticalPosition() - 23, 46, 46);
         ghost1.setIcon(ghost.getPic());
         ghost1.setBounds(ghost.getCurrentHorizontalPosition() - 23, ghost.getCurrentVerticalPosition() - 23, 46, 46);
+  
         // add(player1);
-
+        
 
     }
 }

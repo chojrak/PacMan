@@ -4,8 +4,8 @@ import javax.swing.*;
 
 public class Ghost implements Movable {
 
-    private String lastMove = "left";
-    private String nextMove = "left";
+    private String lastMove = "up";
+    private String nextMove = "up";
     private int currentHorizontalPosition = 335;
     private int currentVerticalPosition = 380;
     private int speed = 3;
