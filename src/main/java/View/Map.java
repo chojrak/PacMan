@@ -67,7 +67,7 @@ public class Map extends JPanel {
             
             player.movePlayer();
             ghost.moveGhost();
-            ghost02.moveGhost();
+
             repaint();
 
         }
