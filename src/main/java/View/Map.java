@@ -11,7 +11,7 @@ public class Map extends JPanel {
     private JFrame window;
     static Player player = new Player();
     JLabel player1 = new JLabel(player.getPic());
-    static Ghost ghost = new Ghost();
+    Ghost ghost = new Ghost("blinky");
     JLabel ghost1 = new JLabel(ghost.getPic());
 
 
@@ -66,7 +66,7 @@ public class Map extends JPanel {
             
             
             player.movePlayer();
-            ghost.moveGhost();
+            ghost.movePlayer();
 
             repaint();
 
