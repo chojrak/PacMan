@@ -82,6 +82,7 @@ public class Map extends JPanel {
             inky.resetPosition();
             pinky.resetPosition();
             this.notCatched = true;
+            repaint();
             animation();
         }
         else {
