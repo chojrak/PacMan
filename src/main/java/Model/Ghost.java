@@ -11,8 +11,8 @@ public class Ghost extends Movable {
     public Ghost(String name) {
         this.name = name;
         super.lastMove = "up";
-        super.currentHorizontalPosition = 335;
-        super.currentVerticalPosition = 380;
+        super.currentHorizontalPosition = 324;
+        super.currentVerticalPosition = 324;
         super.speed = 3;
         super.pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\left" + picCounter + ".png");
 

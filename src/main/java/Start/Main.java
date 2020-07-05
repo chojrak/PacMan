@@ -1,6 +1,9 @@
 package Start;
 
+import View.Container;
+import View.LeftPanel;
 import View.Map;
+import View.RightPanel;
 
 import javax.swing.*;
 
@@ -9,9 +12,15 @@ public class Main {
     public static void main(String[] args) {
 
         JFrame pacman = new JFrame("PacMan");
-        Map map1 = new Map(pacman);
+        LeftPanel left = new LeftPanel(pacman);
+        RightPanel right = new RightPanel(pacman);
 
-        pacman.add(map1);
+        Map map1 = new Map(pacman, right, left);
+
+
+        Container container = new Container(map1, left, right);
+
+        pacman.add(container);
         pacman.setLocationByPlatform(true);
 
         pacman.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,6 +28,7 @@ public class Main {
         pacman.pack();
 
         map1.animation();
+
 
 
     }

@@ -1,12 +1,16 @@
 package Model;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
 public class MapStructure {
 
     public static Square[][] Map = new Square[31][28];
-    private static HashMap<String, ImageIcon> elements = new HashMap<String, ImageIcon>();
+    private static HashMap<String, Image> elements = new HashMap<String, Image>();
 
 
     public static void generatePacmanMap() {
@@ -47,15 +51,20 @@ public class MapStructure {
 
         for (int i = 0; i <= 26; i++) {
             String x = "wall" + i;
-            ImageIcon img = new ImageIcon("src\\main\\resources\\walls\\wall" + i + ".png");
-            elements.put(x, img);
+            try {
+                Image img = ImageIO.read(new File("src\\main\\resources\\walls\\wall" + i + ".png"));
+                elements.put(x, img);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
         for (int i = 0; i <= 29; i++)
             for (int j = 0; j <= 27; j++)
                 Map[i][j] = new Square(elements.get("wall" + pacmanMap[i][j]), (pacmanMap[i][j] > 0),
-                        (((i < 9 && i !=3 || i > 18) && pacmanMap[i][j] == 0)) ||
+                        (((i < 9 && i != 3 || i > 18) && pacmanMap[i][j] == 0)) ||
                                 ((j == 6 || j == 21) && pacmanMap[i][j] == 0) ||
-                        (i == 3 && j == 1)||(i == 3 && j == 12)||(i == 3 && j == 15)||(i == 3 && j == 26));
+                                (i == 3 && j == 1) || (i == 3 && j == 12) || (i == 3 && j == 15) || (i == 3 && j == 26));
 
 
     }

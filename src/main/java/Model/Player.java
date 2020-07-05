@@ -3,6 +3,7 @@ package Model;
 import javax.swing.*;
 
 public class Player extends Movable {
+    private int points;
 
 
     public Player() {
@@ -12,6 +13,15 @@ public class Player extends Movable {
         super.currentVerticalPosition = 540;
         super.speed = 4;
         super.pic = new ImageIcon("src\\main\\resources\\pacman\\pacmanClosed.png");
+        this.points = 0;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void addPoints(int points) {
+        this.points += points;
     }
 
     @Override

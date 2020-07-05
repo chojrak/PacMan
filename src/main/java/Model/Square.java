@@ -1,22 +1,23 @@
 package Model;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Square {
 
-    private ImageIcon picture;
+    private Image picture;
     private boolean obstacle;
     private boolean treat;
    // private int rotation;
 
-    public Square(ImageIcon picture, boolean obstacle, boolean treat) {
+    public Square(Image picture, boolean obstacle, boolean treat) {
         this.picture = picture;
         this.obstacle = obstacle;
         this.treat = treat;
      //   this.rotation = rotation;
     }
 
-    public ImageIcon getPicture() {
+    public Image getPicture() {
         return picture;
     }
 
@@ -26,5 +27,9 @@ public class Square {
 
     public boolean isTreat() {
         return treat;
+    }
+
+    public void setTreat(boolean treat) {
+        this.treat = treat;
     }
 }

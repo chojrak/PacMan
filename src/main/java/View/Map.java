@@ -1,5 +1,6 @@
 package View;
 
+import Model.Events;
 import Model.Ghost;
 import Model.MapStructure;
 import Model.Player;
@@ -13,67 +14,52 @@ public class Map extends JPanel {
     JLabel player1 = new JLabel(player.getPic());
     Ghost ghost = new Ghost("blinky");
     JLabel ghost1 = new JLabel(ghost.getPic());
+    RightPanel right;
+    LeftPanel left;
 
 
-    public Map(JFrame window) {
+    public Map(JFrame window, RightPanel right, LeftPanel left) {
         this.window = window;
+        this.right = right;
+        this.left = left;
         add(this.player1);
         add(this.ghost1);
         setLayout(null);
         MapStructure.generatePacmanMap();
+        Events events = new Events(player, this, ghost);
         Listener moves = new Listener(this);
         JButton jb = new JButton();
         jb.addKeyListener(moves);
         add(jb);
-        fillWithTreats();
-        fillMap();
-
 
     }
 
-    public void fillMap() {
-        for (int j = 0; j <= 29; j++) {
-            for (int i = 0; i <= 27; i++) {
-                JLabel square = new JLabel(MapStructure.Map[j][i].getPicture());
-                square.setBounds(i * 24, j * 24, 24, 24);
-                add(square);
-            }
-        }
-
-    }
-
-    public void fillWithTreats() {
-        for (int j = 0; j <= 29; j++) {
-            for (int i = 0; i <= 27; i++) {
-                if (MapStructure.Map[j][i].isTreat()) {
-                    JLabel dot = new JLabel(new ImageIcon("src\\main\\resources\\smalldot.png"));
-                    dot.setBounds(i * 24, j * 24, 24, 24);
-                    add(dot);
-                }
-            }
-        }
-    }
 
 
     public void animation() {
-    	boolean notCatched = true;
-        while (notCatched=true) {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        boolean notCatched = true;
+        while (notCatched = true) {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            
-            
+
             player.movePlayer();
             ghost.movePlayer();
-
+            Events events = new Events(player, this, ghost);
             repaint();
+            right.repaint();
+            left.repaint();
 
         }
     }
-    
-    
+
 
     @Override
     public Dimension getPreferredSize() {
@@ -83,13 +69,26 @@ public class Map extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        for (int j = 0; j <= 29; j++) {
+            for (int i = 0; i <= 27; i++) {
+                g.drawImage(MapStructure.Map[j][i].getPicture(), i * 24, j * 24, this);
+                if (MapStructure.Map[j][i].isTreat()) {
+                    g.setColor(Color.YELLOW);
+                    g.fillOval(i * 24 + 8, j * 24 + 8, 8, 8);
+                }
+            }
+        }
+
+
         player1.setIcon(player.getPic());
         player1.setBounds(player.getCurrentHorizontalPosition() - 23, player.getCurrentVerticalPosition() - 23, 46, 46);
         ghost1.setIcon(ghost.getPic());
         ghost1.setBounds(ghost.getCurrentHorizontalPosition() - 23, ghost.getCurrentVerticalPosition() - 23, 46, 46);
-  
-        // add(player1);
-        
+
+
+
+
 
     }
 }
