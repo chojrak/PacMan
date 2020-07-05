@@ -4,16 +4,15 @@ import javax.swing.*;
 
 public class Player extends Movable {
     private int points;
+    private int lifes;
 
 
     public Player() {
-        super.lastMove = "left";
-        super.lastPressedMove = "left";
-        super.currentHorizontalPosition = 335;
-        super.currentVerticalPosition = 540;
         super.speed = 4;
         super.pic = new ImageIcon("src\\main\\resources\\pacman\\pacmanClosed.png");
         this.points = 0;
+        this.lifes = 3;
+        resetPosition();
     }
 
     public int getPoints() {
@@ -22,6 +21,25 @@ public class Player extends Movable {
 
     public void addPoints(int points) {
         this.points += points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    public int getLifes() {
+        return lifes;
+    }
+
+    public void subtractLife() {
+        this.lifes--;
+    }
+
+    public void resetPosition(){
+        this.currentHorizontalPosition = 335;
+        this.currentVerticalPosition = 540;
+        this.lastMove = "left";
+        this.lastPressedMove = "left";
     }
 
     @Override

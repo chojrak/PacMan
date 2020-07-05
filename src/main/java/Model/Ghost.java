@@ -4,17 +4,15 @@ import javax.swing.*;
 
 public class Ghost extends Movable {
 
-    private String nextMove = "up";
+    private String nextMove;
     private String name;
 
 
     public Ghost(String name) {
         this.name = name;
-        super.lastMove = "up";
-        super.currentHorizontalPosition = 324;
-        super.currentVerticalPosition = 324;
         super.speed = 3;
-        super.pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\left" + picCounter + ".png");
+        super.pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\up" + picCounter + ".png");
+        resetPosition();
 
     }
 
@@ -30,41 +28,86 @@ public class Ghost extends Movable {
             nextMove = "down";
     }
 
+    public void resetPosition () {
+        if (this.name == "blinky") {
+            this.currentHorizontalPosition = 300;
+            this.currentVerticalPosition = 276;
+        }
+        if (this.name == "clyde") {
+            this.currentHorizontalPosition = 324;
+            this.currentVerticalPosition = 336;
+        }
+        if (this.name == "inky") {
+            this.currentHorizontalPosition = 276;
+            this.currentVerticalPosition = 336;
+        }
+        if (this.name == "pinky") {
+            this.currentHorizontalPosition = 384;
+            this.currentVerticalPosition = 336;
+        }
+        this.lastMove = "up";
+        this.nextMove = "up";
+    }
+
     @Override
     public void nextPic() {
-        if (lastMove == "left")
-            pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\left" + picCounter + ".png");
-        else if (lastMove == "right")
-            pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\right" + picCounter + ".png");
-        else if (lastMove == "up")
-            pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\up" + picCounter + ".png");
-        else if (lastMove == "down")
-            pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\down" + picCounter + ".png");
+        pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\" + lastMove + picCounter + ".png");
     }
 
     @Override
     public void movePlayer() {
         picChooser();
-        if (nextMove == "left" && chckLeft()) {moveLeft(); if (movesCounter%3==0) nextPic();}
-        else if (nextMove == "left") keepGoing();
-        if (nextMove == "right" && chckRight()) {moveRight(); if (movesCounter%3==0) nextPic();}
-        else if (nextMove == "right") keepGoing();
-        if (nextMove == "up" && chckUp()) {moveUp(); if (movesCounter%3==0) nextPic();}
-        else if (nextMove == "up") keepGoing();
-        if (nextMove == "down" && chckDown()) {moveDown(); if (movesCounter%3==0) nextPic();}
-        else if (nextMove == "down") keepGoing();
+        if (nextMove == "left" && chckLeft()) {
+            moveLeft();
+            if (movesCounter % 3 == 0) nextPic();
+        } else if (nextMove == "left") keepGoing();
+
+
+        if (nextMove == "right" && chckRight()) {
+            moveRight();
+            if (movesCounter % 3 == 0) nextPic();
+        } else if (nextMove == "right") keepGoing();
+
+
+        if (nextMove == "up" && chckUp()) {
+            moveUp();
+            if (movesCounter % 3 == 0) nextPic();
+        } else if (nextMove == "up") keepGoing();
+
+
+        if (nextMove == "down" && chckDown()) {
+            moveDown();
+            if (movesCounter % 3 == 0) nextPic();
+        } else if (nextMove == "down") keepGoing();
     }
 
     @Override
     public void keepGoing() {
-        if (lastMove == "left" && chckLeft()) {moveLeft(); if (movesCounter%3==0) nextPic();}
-        else if (lastMove == "left") {correction();getNextMove();}
-        else if (lastMove == "right" && chckRight()) {moveRight(); if (movesCounter%3==0) nextPic();}
-        else if (lastMove == "right") {correction();getNextMove();}
-        else if (lastMove == "up" && chckUp()) {moveUp(); if (movesCounter%3==0) nextPic();}
-        else if (lastMove == "up") {correction();getNextMove();}
-        else if (lastMove == "down" && chckDown()) {moveDown(); if (movesCounter%3==0) nextPic();}
-        else if (lastMove == "down") {correction();getNextMove();}
+        if (lastMove == "left" && chckLeft()) {
+            moveLeft();
+            if (movesCounter % 3 == 0) nextPic();
+        } else if (lastMove == "left") {
+            correction();
+            getNextMove();
+        } else if (lastMove == "right" && chckRight()) {
+            moveRight();
+            if (movesCounter % 3 == 0) nextPic();
+        } else if (lastMove == "right") {
+            correction();
+            getNextMove();
+        } else if (lastMove == "up" && chckUp()) {
+            moveUp();
+            if (movesCounter % 3 == 0) nextPic();
+        } else if (lastMove == "up") {
+            correction();
+            getNextMove();
+        } else if (lastMove == "down" && chckDown()) {
+            moveDown();
+            if (movesCounter % 3 == 0) nextPic();
+        } else if (lastMove == "down") {
+            correction();
+            getNextMove();
+        }
     }
 
 
