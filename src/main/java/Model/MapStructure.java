@@ -11,7 +11,7 @@ public class MapStructure {
 
     public static Square[][] Map = new Square[31][28];
     private static HashMap<String, Image> elements = new HashMap<String, Image>();
-
+    
 
     public static void generatePacmanMap() {
 

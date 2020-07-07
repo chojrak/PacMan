@@ -34,16 +34,16 @@ public class Ghost extends Movable {
             this.currentVerticalPosition = 276;
         }
         if (this.name == "clyde") {
-            this.currentHorizontalPosition = 324;
-            this.currentVerticalPosition = 336;
+            this.currentHorizontalPosition = 300;
+            this.currentVerticalPosition = 276;
         }
         if (this.name == "inky") {
-            this.currentHorizontalPosition = 276;
-            this.currentVerticalPosition = 336;
+            this.currentHorizontalPosition = 300;
+            this.currentVerticalPosition = 276;
         }
         if (this.name == "pinky") {
-            this.currentHorizontalPosition = 384;
-            this.currentVerticalPosition = 336;
+            this.currentHorizontalPosition = 300;
+            this.currentVerticalPosition = 276;
         }
         this.lastMove = "up";
         this.nextMove = "up";
