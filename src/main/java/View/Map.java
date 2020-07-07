@@ -14,6 +14,7 @@ public class Map extends JPanel {
     static Ghost ghost = new Ghost();
     JLabel ghost1 = new JLabel(ghost.getPic());
 
+   
 
     public Map(JFrame window) {
         this.window = window;
@@ -92,4 +93,5 @@ public class Map extends JPanel {
         
 
     }
+    
 }
