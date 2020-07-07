@@ -1,8 +1,5 @@
 package View;
 
-import Model.Events;
-import Model.MapStructure;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
