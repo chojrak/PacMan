@@ -4,6 +4,7 @@ import Model.Events;
 import Model.Ghost;
 import Model.MapStructure;
 import Model.Player;
+import Model.Sounds;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,9 @@ public class Map extends JPanel {
     RightPanel right;
     LeftPanel left;
     boolean notCatched = true;
+    
 
+   
 
     public Map(JFrame window, RightPanel right, LeftPanel left) {
         this.window = window;
@@ -85,8 +88,10 @@ public class Map extends JPanel {
             repaint();
             animation();
         }
+
+        
         else {
-            JLabel gameOver = new JLabel("GAME OVER", SwingConstants.CENTER);
+        	JLabel gameOver = new JLabel("GAME OVER", SwingConstants.CENTER);
             gameOver.setFont(new Font("OCR A Extended", Font.BOLD, 18));
             gameOver.setForeground(Color.RED);
             gameOver.setBounds(0,372,672,50);
@@ -119,7 +124,7 @@ public class Map extends JPanel {
                 }
             }
         }
-
+       
 
         player1.setIcon(player.getPic());
         player1.setBounds(player.getCurrentHorizontalPosition() - 23, player.getCurrentVerticalPosition() - 23, 46, 46);
@@ -134,4 +139,5 @@ public class Map extends JPanel {
 
 
     }
+    
 }

@@ -9,6 +9,7 @@ public class Events {
     Ghost ghost2;
     Ghost ghost3;
     Ghost ghost4;
+    
 
     public Events(Player pacman, Map map, Ghost ghost1, Ghost ghost2, Ghost ghost3, Ghost ghost4) {
         this.pacman = pacman;
@@ -20,7 +21,7 @@ public class Events {
         eatDot();
         meetGhost();
     }
-
+    
     public void eatDot() {
         if (MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].isTreat()
                 && pacman.currentVerticalPosition / 24 * 24 + 12 < pacman.currentVerticalPosition && pacman.lastMove == "up"
@@ -36,7 +37,11 @@ public class Events {
         ) {
             MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].setTreat(false);
             pacman.addPoints(10);
+            Sounds.eatDotSound();
+            
         }
+        
+        	
     }
 
     public void meetGhost() {
@@ -53,6 +58,8 @@ public class Events {
                         && pacman.currentHorizontalPosition / 24 == ghost4.currentHorizontalPosition / 24) {
             map.setNotCatched(false);
             pacman.subtractLife();
+        	Sounds.deathSound();
+            
         }
     }
 
