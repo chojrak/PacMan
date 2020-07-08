@@ -11,6 +11,7 @@ public abstract class Movable {
     protected int picCounter;
     protected int movesCounter;
     protected boolean ascending;
+    protected int level;
     protected ImageIcon pic;
 
 

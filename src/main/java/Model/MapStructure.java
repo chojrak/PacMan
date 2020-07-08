@@ -10,6 +10,8 @@ public class MapStructure {
 
     public static Square[][] Map = new Square[31][28];
     private static HashMap<String, Image> elements = new HashMap<String, Image>();
+    private static int gateHorizontal = 13;
+    private static int getGateVertical = 12;
     
 
     public static void generatePacmanMap() {
@@ -27,7 +29,7 @@ public class MapStructure {
                 {23, 10, 10, 10, 10, 13, 0, 1, 17, 8, 8, 9, 0, 1, 1, 0, 2, 8, 8, 16, 1, 0, 6, 10, 10, 10, 10, 22},
                 {0, 0, 0, 0, 0, 3, 0, 1, 2, 8, 8, 16, 0, 17, 16, 0, 17, 8, 8, 9, 1, 0, 3, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 3, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 3, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 3, 0, 1, 1, 0, 6, 10, 10, 0, 0, 10, 10, 13, 0, 1, 1, 0, 3, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 3, 0, 1, 1, 0, 6, 10, 10, 27, 27, 10, 10, 13, 0, 1, 1, 0, 3, 0, 0, 0, 0, 0},
                 {10, 10, 10, 10, 10, 22, 0, 17, 16, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 17, 16, 0, 23, 10, 10, 10, 10, 10},
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {10, 10, 10, 10, 10, 13, 0, 2, 9, 0, 23, 10, 10, 10, 10, 10, 10, 22, 0, 2, 9, 0, 6, 10, 10, 10, 10, 10},
@@ -48,7 +50,7 @@ public class MapStructure {
         };
 
 
-        for (int i = 0; i <= 26; i++) {
+        for (int i = 0; i <= 27; i++) {
             String x = "wall" + i;
             try {
                 Image img = ImageIO.read(new File("src\\main\\resources\\walls\\wall" + i + ".png"));
@@ -68,7 +70,13 @@ public class MapStructure {
 
     }
 
+    public static int getGateHorizontal() {
+        return gateHorizontal;
+    }
 
+    public static int getGetGateVertical() {
+        return getGateVertical;
+    }
 }
 
 

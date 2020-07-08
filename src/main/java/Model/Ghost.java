@@ -6,11 +6,13 @@ public class Ghost extends Movable {
 
     private String nextMove;
     private String name;
+    private String box;
 
 
     public Ghost(String name) {
         this.name = name;
         super.speed = 3;
+        super.level = 1;
         super.pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\up" + picCounter + ".png");
         resetPosition();
 
@@ -28,25 +30,30 @@ public class Ghost extends Movable {
             nextMove = "down";
     }
 
-    public void resetPosition () {
+    public void resetPosition() {
         if (this.name == "blinky") {
             this.currentHorizontalPosition = 300;
             this.currentVerticalPosition = 276;
+            this.box = "out";
         }
         if (this.name == "clyde") {
-            this.currentHorizontalPosition = 300;
-            this.currentVerticalPosition = 276;
+            this.currentHorizontalPosition = 324;
+            this.currentVerticalPosition = 336;
+            this.box = "in";
         }
         if (this.name == "inky") {
-            this.currentHorizontalPosition = 300;
-            this.currentVerticalPosition = 276;
+            this.currentHorizontalPosition = 276;
+            this.currentVerticalPosition = 336;
+            this.box = "in";
         }
         if (this.name == "pinky") {
-            this.currentHorizontalPosition = 300;
-            this.currentVerticalPosition = 276;
+            this.currentHorizontalPosition = 384;
+            this.currentVerticalPosition = 336;
+            this.box = "in";
         }
         this.lastMove = "up";
         this.nextMove = "up";
+        this.movesCounter = 0;
     }
 
     @Override
@@ -54,8 +61,22 @@ public class Ghost extends Movable {
         pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\" + lastMove + picCounter + ".png");
     }
 
-    @Override
-    public void movePlayer() {
+
+    public void goingOut() {
+        picChooser();
+        if (this.currentHorizontalPosition < MapStructure.getGateHorizontal() * 24) {
+            moveRight();
+            if (movesCounter % 3 == 0) nextPic();
+        } else if (this.currentHorizontalPosition > MapStructure.getGateHorizontal() * 24 + 24 -this.speed) {
+            moveLeft();
+            if (movesCounter % 3 == 0) nextPic();
+        } else if (this.currentVerticalPosition > MapStructure.getGetGateVertical() * 24 - 24) {
+            moveUp();
+            if (movesCounter % 3 == 0) nextPic();
+        } else this.box = "out";
+    }
+
+    public void freeMovement() {
         picChooser();
         if (nextMove == "left" && chckLeft()) {
             moveLeft();
@@ -79,6 +100,22 @@ public class Ghost extends Movable {
             moveDown();
             if (movesCounter % 3 == 0) nextPic();
         } else if (nextMove == "down") keepGoing();
+    }
+
+
+    @Override
+    public void movePlayer() {
+        if (this.box == "out") {
+            freeMovement();
+        } else if (this.name == "clyde" && movesCounter < 100 / this.level) freeMovement();
+        else if (this.name == "clyde") goingOut();
+
+        else if (this.name == "inky" && movesCounter < 300 / this.level) freeMovement();
+        else if (this.name == "inky") goingOut();
+
+        else if (this.name == "pinky" && movesCounter < 500 / this.level) freeMovement();
+        else if (this.name == "pinky") goingOut();
+
     }
 
     @Override
