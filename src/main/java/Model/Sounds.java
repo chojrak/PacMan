@@ -30,7 +30,7 @@ public class Sounds {
 	 public static void eatDotSound() {
 		 try {
 			    Clip clip = AudioSystem.getClip();
-			    AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src\\main\\resources\\music\\chomp.wav"));
+			    AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src\\main\\resources\\music\\chaps.wav"));
 			    clip.open(ais);
 			    clip.loop(0);
 			    
