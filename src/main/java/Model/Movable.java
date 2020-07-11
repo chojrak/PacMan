@@ -78,34 +78,38 @@ public abstract class Movable {
     }
 
     public void moveRight() {
-        currentHorizontalPosition += speed;
+        if (currentHorizontalPosition + speed > 623 &&
+        MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition + 20 + speed) / 24+1].isTeleport()) currentHorizontalPosition = 47;
+        else currentHorizontalPosition += speed;
         if (lastMove != "right") correction();
         setLastMove("right");
     }
 
     public void moveLeft() {
-        currentHorizontalPosition -= speed;
+        if (currentHorizontalPosition - speed < 47
+        && MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition - 20 - speed) / 24-1].isTeleport()) currentHorizontalPosition = 625;
+        else currentHorizontalPosition -= speed;
         if (lastMove != "left") correction();
         setLastMove("left");
     }
 
     public boolean chckUp() {
-        return !MapStructure.Map[(currentVerticalPosition - 20 - speed) / 24][currentHorizontalPosition / 24].isObstacle() &&
-                !MapStructure.Map[(currentVerticalPosition - 20 - speed) / 24][currentHorizontalPosition / 24].isTeleport();
+        return !MapStructure.Map[(currentVerticalPosition - 20 - speed) / 24][currentHorizontalPosition / 24].isObstacle()
+                && !MapStructure.Map[(currentVerticalPosition - 20 - speed) / 24][currentHorizontalPosition / 24].isTeleport();
     }
 
     public boolean chckDown() {
-        return !MapStructure.Map[(currentVerticalPosition + 20 + speed) / 24][currentHorizontalPosition / 24].isObstacle() &&
-                !MapStructure.Map[(currentVerticalPosition + 20 + speed) / 24][currentHorizontalPosition / 24].isTeleport();
+        return !MapStructure.Map[(currentVerticalPosition + 20 + speed) / 24][currentHorizontalPosition / 24].isObstacle()
+                && !MapStructure.Map[(currentVerticalPosition + 20 + speed) / 24][currentHorizontalPosition / 24].isTeleport();
     }
 
     public boolean chckRight() {
-        return !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition + 20 + speed) / 24].isObstacle() &&
-                !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition + 20 + speed) / 24].isTeleport();
+        return !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition + 20 + speed) / 24].isObstacle()
+                && !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition + 20 + speed) / 24].isTeleport();
     }
 
     public boolean chckLeft() {
-        return !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition - 20 - speed) / 24].isObstacle() &&
-                !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition - 20 - speed) / 24].isTeleport();
+        return !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition - 20 - speed) / 24].isObstacle()
+                && !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition - 20 - speed) / 24].isTeleport();
     }
 }
