@@ -8,10 +8,12 @@ public class Player extends Movable {
 
 
     public Player() {
+        super.lastMoveSnap = 0;
         super.speed = 4;
         super.pic = new ImageIcon("src\\main\\resources\\pacman\\pacmanClosed.png");
         this.points = 0;
         this.lifes = 3;
+
         resetPosition();
     }
 
@@ -21,10 +23,6 @@ public class Player extends Movable {
 
     public void addPoints(int points) {
         this.points += points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
     }
 
     public int getLifes() {
@@ -41,6 +39,7 @@ public class Player extends Movable {
         this.lastMove = "left";
         this.lastPressedMove = "left";
     }
+
 
     @Override
     public void nextPic() {

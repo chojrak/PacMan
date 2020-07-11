@@ -21,6 +21,4 @@ public class Container extends JPanel {
         add(right);
     }
 
-
-
 }

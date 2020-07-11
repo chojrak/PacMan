@@ -7,17 +7,31 @@ public class Ghost extends Movable {
     private String nextMove;
     private String name;
     private String box;
-    private int lastMoveSnap;
+
+    private boolean eatableGhosts;
 
 
     public Ghost(String name) {
         this.name = name;
-        this.lastMoveSnap = 0;
+        this.eatableGhosts = false;
+        super.lastMoveSnap = 0;
         super.speed = 3;
         super.level = 1;
         super.pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\up" + picCounter + ".png");
         resetPosition();
 
+    }
+
+    public boolean isEatableGhosts() {
+        return eatableGhosts;
+    }
+
+    public void setEatableGhosts(boolean eatableGhosts) {
+        this.eatableGhosts = eatableGhosts;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void getNextMove() {
@@ -30,6 +44,13 @@ public class Ghost extends Movable {
             nextMove = "up";
         if (random > 3 && random <= 4)
             nextMove = "down";
+    }
+
+    public void reverseMove() {
+        if (lastMove.equals("up")) lastMove = "down";
+        else if (lastMove.equals("down")) lastMove = "up";
+        else if (lastMove.equals("left")) lastMove = "right";
+        else if (lastMove.equals("right")) lastMove = "left";
     }
 
     public void resetPosition() {
@@ -60,7 +81,10 @@ public class Ghost extends Movable {
 
     @Override
     public void nextPic() {
-        pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\" + lastMove + picCounter + ".png");
+        if (eatableGhosts == false)
+            pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\" + lastMove + picCounter + ".png");
+        else if (eatableGhosts == true)
+            pic = new ImageIcon("src\\main\\resources\\ghosts\\blue\\blue" + picCounter + ".png");
     }
 
 

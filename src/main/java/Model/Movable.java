@@ -13,6 +13,7 @@ public abstract class Movable {
     protected boolean ascending;
     protected int level;
     protected ImageIcon pic;
+    protected int lastMoveSnap;
 
 
 
@@ -34,6 +35,18 @@ public abstract class Movable {
 
     public int getCurrentVerticalPosition() {
         return currentVerticalPosition;
+    }
+
+    public void setCurrentHorizontalPosition(int currentHorizontalPosition) {
+        this.currentHorizontalPosition = currentHorizontalPosition;
+    }
+
+    public void setCurrentVerticalPosition(int currentVerticalPosition) {
+        this.currentVerticalPosition = currentVerticalPosition;
+    }
+
+    public int getLastMoveSnap() {
+        return lastMoveSnap;
     }
 
     public void setLastMove(String lastMove) {

@@ -1,5 +1,8 @@
 package View;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -21,6 +24,7 @@ public class Listener implements KeyListener {
         if (e.getExtendedKeyCode() == KeyEvent.VK_LEFT) map.player.setLastPressedMove("left");
         if (e.getExtendedKeyCode() == KeyEvent.VK_UP) map.player.setLastPressedMove("up");
         if (e.getExtendedKeyCode() == KeyEvent.VK_DOWN) map.player.setLastPressedMove("down");
+
     }
 
     @Override
@@ -28,3 +32,6 @@ public class Listener implements KeyListener {
 
     }
 }
+
+
+

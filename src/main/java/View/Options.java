@@ -1,19 +1,10 @@
 package View;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
-
-import Model.Sounds;
-import View.Menu.VievHighscores;
 
 public class Options extends JPanel {
     JFrame options;
@@ -40,7 +31,7 @@ public class Options extends JPanel {
 }
     class GoBack implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			JFrame back = new JFrame("PacMan");				
+			JFrame back = new JFrame("PacMan");
 		
 			back.add(new Menu(back));
 			back.setLocationByPlatform(true);
@@ -49,7 +40,7 @@ public class Options extends JPanel {
 			back.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			back.setVisible(true);
 			back.pack();		        
-}		
+}
 }
     
     @Override

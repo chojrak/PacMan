@@ -1,27 +1,19 @@
 package View;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.border.LineBorder;
-
-import Model.Sounds;
 
 
 public class Menu extends JPanel {
     JFrame pacman;
-   
-    
+    JButton single;
+	    
     public Menu(JFrame pacman) {
     	this.pacman = pacman;
+
     	
         setLayout(null);
         this.setBackground(Color.BLACK);
@@ -29,9 +21,9 @@ public class Menu extends JPanel {
         JLabel logo = new JLabel();
         logo.setIcon(new ImageIcon("src\\main\\resources\\buttons\\pacmanlogo.png"));
         logo.setBounds(40, 50, 850, 150);
-        pacman.add(logo);        
+        pacman.add(logo);
         
-        JButton single = new JButton();
+        single = new JButton();
         single.setBackground(Color.BLACK);
         single.setBorder(new LineBorder(Color.BLACK));
         single.setIcon(new ImageIcon("src\\main\\resources\\buttons\\single.png"));
@@ -63,26 +55,7 @@ public class Menu extends JPanel {
     	highscores.addActionListener(new VievHighscores());
     }
     
-    class Play implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			
-			JFrame game = new JFrame("PacMan");
-	        LeftPanel left = new LeftPanel(game);
-	        RightPanel right = new RightPanel(game);
 
-	        Map map1 = new Map(game, right, left);
-
-
-	        Container container = new Container(map1, left, right);
-	        game.add(container);
-	        pacman.setVisible(false);
-	        pacman.dispose();
-	        game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        game.setVisible(true);
-	        game.pack();
-	  //      map1.animation();	        
-	}
-    }	
 		class ChangeOptions implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				JFrame options = new JFrame("PacMan");				
@@ -107,9 +80,30 @@ public class Menu extends JPanel {
 		        highscores.pack();
 	}		
 	}
+
+	class Play implements ActionListener {
+
+		public void actionPerformed(ActionEvent e) {
+
+			JFrame game = new JFrame("PacMan");
+			LeftPanel left = new LeftPanel(game);
+			RightPanel right = new RightPanel(game);
+
+			Map map1 = new Map(game, right, left);
+			Container container = new Container(map1, left, right);
+			game.add(container);
+			pacman.setVisible(false);
+			pacman.dispose();
+			game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			game.setVisible(true);
+			game.pack();
+
+		}
+	}
     
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(928, 720);
     }
+
 }
