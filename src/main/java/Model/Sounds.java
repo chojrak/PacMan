@@ -27,6 +27,20 @@ public class Sounds {
 	    ex.printStackTrace();
 	}
 	}
+	
+	public static void background() {
+		
+		try {
+	    Clip clip = AudioSystem.getClip();
+	    AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src\\main\\resources\\music\\beginning.wav"));
+	    clip.open(ais);
+	    clip.loop(2);
+	    
+	    
+	} catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
+	    ex.printStackTrace();
+	}
+	}
 	 public static void eatDotSound() {
 		 try {
 			    Clip clip = AudioSystem.getClip();
