@@ -24,11 +24,6 @@ public class Map extends JPanel {
     RightPanel right;
     LeftPanel left;
     boolean notCatched = true;
-<<<<<<< HEAD
-    
-    
-=======
->>>>>>> 9be9a3dc635ef986a4509576c597397889159344
 
 
     public Map(JFrame window, RightPanel right, LeftPanel left) {
