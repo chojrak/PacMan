@@ -25,6 +25,7 @@ public class Map extends JPanel {
     LeftPanel left;
     boolean notCatched = true;
     
+    
 
    
 
