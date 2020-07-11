@@ -9,7 +9,7 @@ public abstract class Movable {
     protected int currentVerticalPosition;
     protected int speed;
     protected int picCounter;
-    protected int movesCounter;
+    public int movesCounter;
     protected boolean ascending;
     protected int level;
     protected ImageIcon pic;
@@ -90,18 +90,22 @@ public abstract class Movable {
     }
 
     public boolean chckUp() {
-        return !MapStructure.Map[(currentVerticalPosition - 20 - speed) / 24][currentHorizontalPosition / 24].isObstacle();
+        return !MapStructure.Map[(currentVerticalPosition - 20 - speed) / 24][currentHorizontalPosition / 24].isObstacle() &&
+                !MapStructure.Map[(currentVerticalPosition - 20 - speed) / 24][currentHorizontalPosition / 24].isTeleport();
     }
 
     public boolean chckDown() {
-        return !MapStructure.Map[(currentVerticalPosition + 20 + speed) / 24][currentHorizontalPosition / 24].isObstacle();
+        return !MapStructure.Map[(currentVerticalPosition + 20 + speed) / 24][currentHorizontalPosition / 24].isObstacle() &&
+                !MapStructure.Map[(currentVerticalPosition + 20 + speed) / 24][currentHorizontalPosition / 24].isTeleport();
     }
 
     public boolean chckRight() {
-        return !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition + 20 + speed) / 24].isObstacle();
+        return !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition + 20 + speed) / 24].isObstacle() &&
+                !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition + 20 + speed) / 24].isTeleport();
     }
 
     public boolean chckLeft() {
-        return !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition - 20 - speed) / 24].isObstacle();
+        return !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition - 20 - speed) / 24].isObstacle() &&
+                !MapStructure.Map[currentVerticalPosition / 24][(currentHorizontalPosition - 20 - speed) / 24].isTeleport();
     }
 }

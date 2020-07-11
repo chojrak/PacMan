@@ -70,7 +70,7 @@ public class Ghost extends Movable {
         } else if (this.currentHorizontalPosition > MapStructure.getGateHorizontal() * 24 + 24 -this.speed) {
             moveLeft();
             if (movesCounter % 3 == 0) nextPic();
-        } else if (this.currentVerticalPosition > MapStructure.getGetGateVertical() * 24 - 24) {
+        } else if (this.currentVerticalPosition > MapStructure.getGetGateVertical() * 24 - 12) {
             moveUp();
             if (movesCounter % 3 == 0) nextPic();
         } else this.box = "out";

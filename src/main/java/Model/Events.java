@@ -23,19 +23,19 @@ public class Events {
     }
     
     public void eatDot() {
-        if (MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].isTreat()
+        if (!(MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].getTreat().equals("none"))
                 && pacman.currentVerticalPosition / 24 * 24 + 12 < pacman.currentVerticalPosition && pacman.lastMove == "up"
                 ||
-                MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].isTreat()
+                !(MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].getTreat().equals("none"))
                         && pacman.currentVerticalPosition / 24 * 24 + 12 > pacman.currentVerticalPosition && pacman.lastMove == "down"
                 ||
-                MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].isTreat()
+                !(MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].getTreat().equals("none"))
                         && pacman.currentHorizontalPosition / 24 * 24 + 12 < pacman.currentHorizontalPosition && pacman.lastMove == "left"
                 ||
-                MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].isTreat()
+                !(MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].getTreat().equals("none"))
                         && pacman.currentHorizontalPosition / 24 * 24 + 12 > pacman.currentHorizontalPosition && pacman.lastMove == "right"
         ) {
-            MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].setTreat(false);
+            MapStructure.Map[pacman.currentVerticalPosition / 24][pacman.currentHorizontalPosition / 24].setTreat("none");
             pacman.addPoints(10);
             Sounds.eatDotSound();
             
