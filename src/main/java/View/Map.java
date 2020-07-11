@@ -26,7 +26,6 @@ public class Map extends JPanel {
     boolean notCatched = true;
 
 
-
     public Map(JFrame window, RightPanel right, LeftPanel left) {
         this.window = window;
         this.right = right;
