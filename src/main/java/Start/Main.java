@@ -5,7 +5,10 @@ import View.LeftPanel;
 import View.Map;
 import View.RightPanel;
 
+import javax.sound.sampled.*;
 import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 
 public class Main {
 
@@ -17,11 +20,13 @@ public class Main {
 
         Map map1 = new Map(game, right, left);
         Container container = new Container(map1, left, right);
+
         game.add(container);
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         game.setVisible(true);
         game.pack();
         map1.getReady();
+
 
 
     }

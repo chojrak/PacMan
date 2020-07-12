@@ -44,16 +44,22 @@ public class Sounds {
         try {
             Clip clip = AudioSystem.getClip();
             AudioInputStream ais = AudioSystem.getAudioInputStream(file);
+            clip.open(ais);
+            clip.setFramePosition(0);
             if (prioritySound) {
-                if (musicOn == false) clip.open(ais);
-            }
+                if (musicOn == false)
+            clip.start();}
+            else if (!prioritySound) clip.start();
             musicOn = true;
             clip.addLineListener(new musicEnd());
-            clip.loop(0);
 
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        music();
     }
 
 
