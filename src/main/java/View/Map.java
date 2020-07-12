@@ -1,10 +1,6 @@
 package View;
 
-import Model.Events;
-import Model.Ghost;
-import Model.MapStructure;
-import Model.Player;
-import Model.Sounds;
+import Model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,85 +68,99 @@ public class Map extends JPanel {
     public void animation() {
 
         while (notCatched == true && eatenGhost.equals("none")) {
-            sleep(refresh);
-
-            player.movePlayer();
-            blinky.movePlayer();
-            clyde.movePlayer();
-            inky.movePlayer();
-            pinky.movePlayer();
-            Events events = new Events(player, this, blinky, clyde, inky, pinky);
-            repaint();
-            right.repaint();
-            left.repaint();
-            if (player.getLastMoveSnap() + 500/blinky.getLevel() < player.movesCounter) {
-                eatenGhost = "none";
-                blinky.setEatableGhosts(false);
-                clyde.setEatableGhosts(false);
-                inky.setEatableGhosts(false);
-                pinky.setEatableGhosts(false);
-            }
-
+            standardMoves();
         }
 
 
         if (notCatched == false && player.getLifes() > 0) {
-            sleep(1000);
-            player.resetPosition();
-            blinky.resetPosition();
-            clyde.resetPosition();
-            inky.resetPosition();
-            pinky.resetPosition();
-            this.notCatched = true;
-            repaint();
-            animation();
+            lifeAfterDeath();
         } else if (!eatenGhost.equals("none")) {
-            int horizontal = player.getCurrentHorizontalPosition();
-            int vertical = player.getCurrentVerticalPosition();
-            player.setCurrentHorizontalPosition(-1000);
-            player.setCurrentVerticalPosition(-1000);
-
-            if (eatenGhost.equals("blinky")) {
-                blinky.setCurrentHorizontalPosition(-1000);
-                blinky.setCurrentVerticalPosition(-1000);
-            }
-            if (eatenGhost.equals("clyde")) {
-                clyde.setCurrentHorizontalPosition(-1000);
-                clyde.setCurrentVerticalPosition(-1000);
-            }
-            if (eatenGhost.equals("inky")) {
-                inky.setCurrentHorizontalPosition(-1000);
-                inky.setCurrentVerticalPosition(-1000);
-            }
-            if (eatenGhost.equals("pinky")) {
-                pinky.setCurrentHorizontalPosition(-1000);
-                pinky.setCurrentVerticalPosition(-1000);
-            }
-
-            labelCreator(news, "200", Color.cyan, horizontal - 24, vertical - 24, 50, 50);
-            add(news);
-            repaint();
-            sleep(500);
-            player.setCurrentVerticalPosition(vertical);
-            player.setCurrentHorizontalPosition(horizontal);
-            if (eatenGhost.equals("blinky")) blinky.resetPosition();
-            if (eatenGhost.equals("clyde")) clyde.resetPosition();
-            if (eatenGhost.equals("inky")) inky.resetPosition();
-            if (eatenGhost.equals("pinky")) pinky.resetPosition();
-            eatenGhost = "none";
-            news.setText("");
-            player.addPoints(200);
-            repaint();
-            animation();
+           eatGhost();
 
 
         } else {
             labelCreator(news, "GAME OVER", Color.RED, 0,372,672,50);
             this.add(news);
             repaint();
-
+            if (HighScores.goodGame(new Score("temp", player.getPoints()))) {
+                String name = JOptionPane.showInputDialog(this, "Good Game, enter Your name:");
+                HighScores.addRecord(new Score(name, player.getPoints()));
+            }
         }
 
+    }
+
+    public void standardMoves() {
+        sleep(refresh);
+
+        player.movePlayer();
+        blinky.movePlayer();
+        clyde.movePlayer();
+        inky.movePlayer();
+        pinky.movePlayer();
+        Events events = new Events(player, this, blinky, clyde, inky, pinky);
+        repaint();
+        right.repaint();
+        left.repaint();
+        if (player.getLastMoveSnap() + 500/blinky.getLevel() < player.movesCounter) {
+            eatenGhost = "none";
+            blinky.setEatableGhosts(false);
+            clyde.setEatableGhosts(false);
+            inky.setEatableGhosts(false);
+            pinky.setEatableGhosts(false);
+        }
+    }
+
+    public void lifeAfterDeath() {
+        sleep(1000);
+        player.resetPosition();
+        blinky.resetPosition();
+        clyde.resetPosition();
+        inky.resetPosition();
+        pinky.resetPosition();
+        this.notCatched = true;
+        repaint();
+        animation();
+    }
+
+    public void eatGhost () {
+        int horizontal = player.getCurrentHorizontalPosition();
+        int vertical = player.getCurrentVerticalPosition();
+        player.setCurrentHorizontalPosition(-1000);
+        player.setCurrentVerticalPosition(-1000);
+
+        if (eatenGhost.equals("blinky")) {
+            blinky.setCurrentHorizontalPosition(-1000);
+            blinky.setCurrentVerticalPosition(-1000);
+        }
+        if (eatenGhost.equals("clyde")) {
+            clyde.setCurrentHorizontalPosition(-1000);
+            clyde.setCurrentVerticalPosition(-1000);
+        }
+        if (eatenGhost.equals("inky")) {
+            inky.setCurrentHorizontalPosition(-1000);
+            inky.setCurrentVerticalPosition(-1000);
+        }
+        if (eatenGhost.equals("pinky")) {
+            pinky.setCurrentHorizontalPosition(-1000);
+            pinky.setCurrentVerticalPosition(-1000);
+        }
+
+        labelCreator(news, "200", Color.cyan, horizontal - 24, vertical - 24, 50, 50);
+        add(news);
+        repaint();
+        sleep(500);
+        player.setCurrentVerticalPosition(vertical);
+        player.setCurrentHorizontalPosition(horizontal);
+        if (eatenGhost.equals("blinky")) blinky.resetPosition();
+        if (eatenGhost.equals("clyde")) clyde.resetPosition();
+        if (eatenGhost.equals("inky")) inky.resetPosition();
+        if (eatenGhost.equals("pinky")) pinky.resetPosition();
+        eatenGhost = "none";
+        news.setText("");
+        player.addPoints(200);
+        repaint();
+        animation();
     }
 
     public void setNotCatched(boolean notCatched) {

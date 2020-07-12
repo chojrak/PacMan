@@ -122,7 +122,7 @@ public class Events {
         if(!test) {map.setNotCatched(false);
 
             MapStructure.fillWithTreats();
-
+            Sounds.win();
             ghost1.level++;
             ghost2.level++;
             ghost3.level++;
@@ -132,7 +132,7 @@ public class Events {
             ghost2.speed++;
             ghost3.speed++;
             ghost4.speed++;}
-            else map.refresh = map.refresh/3*2;
+            else if (map.refresh > 10) map.refresh -=2;
         }
     }
 

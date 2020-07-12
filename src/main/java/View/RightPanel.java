@@ -12,6 +12,7 @@ public class RightPanel extends JPanel {
     private JLabel levelValue = new JLabel();
     private JLabel life1 = new JLabel();
 
+
     public RightPanel(JFrame window) {
         this.window = window;
         setLayout(null);
@@ -19,22 +20,26 @@ public class RightPanel extends JPanel {
         Font gameFont = new Font("OCR A Extended", Font.PLAIN, 18);
 
         JLabel score = new JLabel();
-        labelCreator(score, "SCORE:", gameFont, Color.WHITE, 0, 24, 75, 24);
+        labelCreator(score, "SCORE:", gameFont, Color.WHITE, 0, 24, 114, 24);
         add(score);
 
-        labelCreator(scoreValue, String.valueOf(Map.player.getPoints()), gameFont, Color.WHITE, 70, 24, 58, 24);
+        labelCreator(scoreValue, String.valueOf(Map.player.getPoints()), gameFont, Color.WHITE, 114, 24, 58, 24);
+        scoreValue.setHorizontalAlignment(SwingConstants.LEFT);
         add(scoreValue);
 
         JLabel lifes = new JLabel();
-        labelCreator(lifes, "LIFES:", gameFont, Color.WHITE, 0, 72, 75, 24);
+        labelCreator(lifes, "LIFES:", gameFont, Color.WHITE, 0, 72, 114, 24);
         add(lifes);
 
         JLabel level = new JLabel();
-        labelCreator(level, "LEVEL:", gameFont, Color.WHITE, 0, 150, 75, 24);
+        labelCreator(level, "LEVEL:", gameFont, Color.WHITE, 0, 150, 114, 24);
         add(level);
 
-        labelCreator(levelValue, String.valueOf(Map.player.getLevel()), gameFont, Color.WHITE, 70, 150, 58, 24);
+        labelCreator(levelValue, String.valueOf(Map.player.getLevel()), gameFont, Color.WHITE, 114, 150, 58, 24);
+        levelValue.setHorizontalAlignment(SwingConstants.LEFT);
         add(levelValue);
+
+
 
 
 
@@ -43,6 +48,7 @@ public class RightPanel extends JPanel {
 
     public void labelCreator(JLabel label, String text, Font font, Color color, int x, int y, int width, int height) {
         label.setText(text);
+        label.setHorizontalAlignment(SwingConstants.RIGHT);
         label.setFont(font);
         label.setForeground(color);
         label.setBounds(x, y, width, height);
@@ -51,7 +57,7 @@ public class RightPanel extends JPanel {
 
     @Override
     public Dimension getPreferredSize() {
-        return new Dimension(128, 720);
+        return new Dimension(228, 720);
     }
 
     @Override
@@ -64,7 +70,7 @@ public class RightPanel extends JPanel {
         {
             try {
                 Image img = ImageIO.read(new File("src\\main\\resources\\pacman mini.png"));
-                g.drawImage(img, (i-1)*24, 100,24,24, this);
+                g.drawImage(img, (i+1)*24, 100,24,24, this);
             } catch (IOException e) {
                 e.printStackTrace();
             }

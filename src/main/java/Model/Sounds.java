@@ -40,6 +40,10 @@ public class Sounds {
         newSound(false, new File("src\\main\\resources\\music\\pacman_eatghost.wav"));
     }
 
+    public static void win() {
+        newSound(false, new File("src\\main\\resources\\music\\pacman_extrapac.wav"));
+    }
+
     public static void newSound(boolean prioritySound, File file) {
         try {
             Clip clip = AudioSystem.getClip();
