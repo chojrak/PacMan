@@ -24,7 +24,7 @@ Project is created with:
 To run this project use IDE, import file (or clone with Git) as Maven Project.
 
 
-##Features
+## Features
 * single player mode,
 * multi player mode,
 * saving highscores,
@@ -35,7 +35,7 @@ To-do list:
 * new bonuses,
 * character customization options.
 
-##License 
+## License 
 * PostgreSQL License.
 
 Copyright 2020 <a href="https://github.com/chojrak" rel="nofollow">Rafał Chaciński</a> <a href="https://github.com/MalczewskiPiotr" rel="nofollow">Piotr Malczewski</a>
