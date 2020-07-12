@@ -53,6 +53,10 @@ public abstract class Movable {
         return level;
     }
 
+    public void setPic(ImageIcon pic) {
+        this.pic = pic;
+    }
+
     public void setLastMove(String lastMove) {
         if (lastMove == "left" || lastMove == "right" || lastMove == "up" || lastMove == "down")
             this.lastMove = lastMove;

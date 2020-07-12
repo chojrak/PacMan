@@ -19,8 +19,7 @@ public class LeftPanel extends JPanel {
         add(scores);
         addScores();
 
-        }
-
+    }
 
 
     public void labelCreator(JLabel label, String text, Color color, int x, int y, int width, int height) {

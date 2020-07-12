@@ -5,10 +5,7 @@ import View.LeftPanel;
 import View.Map;
 import View.RightPanel;
 
-import javax.sound.sampled.*;
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
 
 public class Main {
 
@@ -26,7 +23,6 @@ public class Main {
         game.setVisible(true);
         game.pack();
         map1.getReady();
-
 
 
     }

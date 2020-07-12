@@ -1,7 +1,6 @@
 package Model;
 
 import View.Map;
-import View.RightPanel;
 
 import javax.swing.*;
 
@@ -22,9 +21,10 @@ public class Events {
         this.ghost4 = ghost4;
         this.map = map;
         eatDot();
-        meetGhost();
+        death();
         eatGhost();
         clearedMap();
+        extraLife();
     }
 
     public void eatDot() {
@@ -66,47 +66,66 @@ public class Events {
 
     }
 
-    public void meetGhost() {
+    public void death() {
         if (ghost1.isEatableGhosts() == false
-                && pacman.currentVerticalPosition / 24 == ghost1.currentVerticalPosition / 24
-                && pacman.currentHorizontalPosition / 24 == ghost1.currentHorizontalPosition / 24
+                && (meetGhost(ghost1) || meetGhostCorrection(ghost1))
                 ||
                 ghost2.isEatableGhosts() == false
-                        && pacman.currentVerticalPosition / 24 == ghost2.currentVerticalPosition / 24
-                        && pacman.currentHorizontalPosition / 24 == ghost2.currentHorizontalPosition / 24
+                        && (meetGhost(ghost2) || meetGhostCorrection(ghost2))
                 ||
                 ghost3.isEatableGhosts() == false
-                        && pacman.currentVerticalPosition / 24 == ghost3.currentVerticalPosition / 24
-                        && pacman.currentHorizontalPosition / 24 == ghost3.currentHorizontalPosition / 24
+                        && (meetGhost(ghost3) || meetGhostCorrection(ghost3))
                 ||
                 ghost4.isEatableGhosts() == false
-                        && pacman.currentVerticalPosition / 24 == ghost4.currentVerticalPosition / 24
-                        && pacman.currentHorizontalPosition / 24 == ghost4.currentHorizontalPosition / 24) {
+                        && (meetGhost(ghost4) || meetGhostCorrection(ghost4))) {
             map.setNotCatched(false);
             pacman.subtractLife();
             Sounds.deathSound();
-
-
         }
+    }
+
+    public boolean meetGhost (Ghost g) {
+        return (pacman.currentVerticalPosition / 24 == g.currentVerticalPosition / 24
+                && pacman.currentHorizontalPosition / 24 == g.currentHorizontalPosition / 24);
+    }
+
+    public boolean meetGhostCorrection(Ghost g) {
+        return (pacman.lastMove.equals("right") && g.lastMove.equals("left")
+                && pacman.currentVerticalPosition == g.currentVerticalPosition
+                && pacman.currentHorizontalPosition + 24 > g.currentHorizontalPosition
+                && pacman.currentHorizontalPosition < g.currentHorizontalPosition
+                ||
+                g.lastMove.equals("right") && pacman.lastMove.equals("left")
+                        && g.currentVerticalPosition == pacman.currentVerticalPosition
+                        && g.currentHorizontalPosition + 24 > pacman.currentHorizontalPosition
+                        && g.currentHorizontalPosition < pacman.currentHorizontalPosition
+                ||
+                pacman.lastMove.equals("down") && g.lastMove.equals("up")
+                        && pacman.currentHorizontalPosition == g.currentHorizontalPosition
+                        && pacman.currentVerticalPosition + 24 > g.currentVerticalPosition
+                        && pacman.currentVerticalPosition < g.currentVerticalPosition
+                ||
+                g.lastMove.equals("down") && pacman.lastMove.equals("up")
+                        && g.currentHorizontalPosition == pacman.currentHorizontalPosition
+                        && g.currentVerticalPosition + 24 > pacman.currentVerticalPosition
+                        && g.currentVerticalPosition < pacman.currentVerticalPosition);
     }
 
     public void eatGhost() {
         if (ghost1.isEatableGhosts() == true
-                && pacman.currentVerticalPosition / 24 == ghost1.currentVerticalPosition / 24
-                && pacman.currentHorizontalPosition / 24 == ghost1.currentHorizontalPosition / 24) {
+                && (meetGhost(ghost1) || meetGhostCorrection(ghost1))) {
             map.eatenGhost = ghost1.getName();
-
+            Sounds.eatGhostSound();
         } else if (ghost2.isEatableGhosts() == true
-                && pacman.currentVerticalPosition / 24 == ghost2.currentVerticalPosition / 24
-                && pacman.currentHorizontalPosition / 24 == ghost2.currentHorizontalPosition / 24) {
+                && (meetGhost(ghost2) || meetGhostCorrection(ghost2))) {
             map.eatenGhost = ghost2.getName();
-        } else if (ghost3.isEatableGhosts() == true
-                && pacman.currentVerticalPosition / 24 == ghost3.currentVerticalPosition / 24
-                && pacman.currentHorizontalPosition / 24 == ghost3.currentHorizontalPosition / 24) {
+            Sounds.eatGhostSound();
+        }else if (ghost3.isEatableGhosts() == true
+                && (meetGhost(ghost3) || meetGhostCorrection(ghost3))) {
             map.eatenGhost = ghost3.getName();
+            Sounds.eatGhostSound();
         } else if (ghost4.isEatableGhosts() == true
-                && pacman.currentVerticalPosition / 24 == ghost4.currentVerticalPosition / 24
-                && pacman.currentHorizontalPosition / 24 == ghost4.currentHorizontalPosition / 24) {
+                && (meetGhost(ghost4) || meetGhostCorrection(ghost4))) {
             map.eatenGhost = ghost4.getName();
             Sounds.eatGhostSound();
         }
@@ -119,7 +138,11 @@ public class Events {
                 if (!MapStructure.Map[j][i].getTreat().equals("none")) test = true;
             }
         }
-        if(!test) {map.setNotCatched(false);
+        if (!test) {
+            pacman.setPic(new ImageIcon("src\\main\\resources\\pacman\\pacmanClosed.png"));
+            map.repaint();
+
+            map.setNotCatched(false);
 
             MapStructure.fillWithTreats();
             Sounds.win();
@@ -128,11 +151,20 @@ public class Events {
             ghost3.level++;
             ghost4.level++;
             pacman.level++;
-            if (ghost1.speed< 5) {ghost1.speed++;
-            ghost2.speed++;
-            ghost3.speed++;
-            ghost4.speed++;}
-            else if (map.refresh > 10) map.refresh -=2;
+            if (ghost1.speed < 5) {
+                ghost1.speed++;
+                ghost2.speed++;
+                ghost3.speed++;
+                ghost4.speed++;
+            } else if (map.refresh > 10) map.refresh -= 2;
+        }
+    }
+
+    public void extraLife() {
+        if (pacman.getPoints() % 10000 == 0) {
+            pacman.addLife();
+            pacman.addPoints(1);
+            Sounds.eatFruitSound();
         }
     }
 

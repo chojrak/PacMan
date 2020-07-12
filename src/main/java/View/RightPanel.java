@@ -8,9 +8,15 @@ import java.io.IOException;
 
 public class RightPanel extends JPanel {
     private JFrame window;
-    private JLabel scoreValue = new JLabel();
-    private JLabel levelValue = new JLabel();
-    private JLabel life1 = new JLabel();
+    private JLabel scoreValue;
+    private JLabel levelValue;
+    private JLabel life1;
+
+    {
+        scoreValue = new JLabel();
+        levelValue = new JLabel();
+        life1 = new JLabel();
+    }
 
 
     public RightPanel(JFrame window) {
@@ -38,10 +44,6 @@ public class RightPanel extends JPanel {
         labelCreator(levelValue, String.valueOf(Map.player.getLevel()), gameFont, Color.WHITE, 114, 150, 58, 24);
         levelValue.setHorizontalAlignment(SwingConstants.LEFT);
         add(levelValue);
-
-
-
-
 
 
     }

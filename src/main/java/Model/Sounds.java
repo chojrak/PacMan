@@ -52,8 +52,8 @@ public class Sounds {
             clip.setFramePosition(0);
             if (prioritySound) {
                 if (musicOn == false)
-            clip.start();}
-            else if (!prioritySound) clip.start();
+                    clip.start();
+            } else if (!prioritySound) clip.start();
             musicOn = true;
             clip.addLineListener(new musicEnd());
 

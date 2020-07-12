@@ -7,22 +7,43 @@ import java.awt.*;
 
 public class Map extends JPanel {
     JFrame window;
-    static Player player = new Player();
-    JLabel player1 = new JLabel(player.getPic());
-    Ghost blinky = new Ghost("blinky");
-    Ghost clyde = new Ghost("clyde");
-    Ghost inky = new Ghost("inky");
-    Ghost pinky = new Ghost("pinky");
-    JLabel ghost1 = new JLabel(blinky.getPic());
-    JLabel ghost2 = new JLabel(clyde.getPic());
-    JLabel ghost3 = new JLabel(inky.getPic());
-    JLabel ghost4 = new JLabel(pinky.getPic());
-    static JLabel news = new JLabel();
+    static Player player;
+    static JLabel news;
+
+    JLabel player1;
+    Ghost blinky;
+    Ghost clyde;
+    Ghost inky;
+    Ghost pinky;
+    JLabel ghost1;
+    JLabel ghost2;
+    JLabel ghost3;
+    JLabel ghost4;
     RightPanel right;
     LeftPanel left;
-    public int refresh = 15;
-    boolean notCatched = true;
-    public String eatenGhost = "none";
+    public int refresh;
+    boolean notCatched;
+    public String eatenGhost;
+
+    static {
+        player = new Player();
+        news = new JLabel();
+    }
+    {
+        player1 = new JLabel(player.getPic());
+        blinky = new Ghost("blinky");
+        clyde = new Ghost("clyde");
+        inky = new Ghost("inky");
+        pinky = new Ghost("pinky");
+        ghost1 = new JLabel(blinky.getPic());
+        ghost2 = new JLabel(clyde.getPic());
+        ghost3 = new JLabel(inky.getPic());
+        ghost4 = new JLabel(pinky.getPic());
+        refresh = 15;
+        notCatched = true;
+        eatenGhost = "none";
+
+    }
 
 
     public Map(JFrame window, RightPanel right, LeftPanel left) {
@@ -86,6 +107,14 @@ public class Map extends JPanel {
                 String name = JOptionPane.showInputDialog(this, "Good Game, enter Your name:");
                 HighScores.addRecord(new Score(name, player.getPoints()));
             }
+            player = new Player();
+            blinky = new Ghost("blinky");
+            clyde = new Ghost("clyde");
+            inky = new Ghost("inky");
+            pinky = new Ghost("pinky");
+            repaint();
+            MapStructure.fillWithTreats();
+            getReady();
         }
 
     }

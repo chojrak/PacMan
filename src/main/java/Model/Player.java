@@ -32,6 +32,11 @@ public class Player extends Movable {
         this.lifes--;
     }
 
+    public void addLife() {
+        this.lifes++;
+    }
+
+
     public void resetPosition(){
         this.currentHorizontalPosition = 335;
         this.currentVerticalPosition = 540;

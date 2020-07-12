@@ -1,7 +1,6 @@
 package View;
 
 import javax.swing.*;
-import Model.Sounds;
 
 
 public class Container extends JPanel {
@@ -10,7 +9,7 @@ public class Container extends JPanel {
     LeftPanel left;
     RightPanel right;
 
-    public Container (Map map, LeftPanel left, RightPanel right) {
+    public Container(Map map, LeftPanel left, RightPanel right) {
         this.map = map;
         this.left = left;
         this.right = right;

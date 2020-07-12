@@ -19,6 +19,6 @@ public class Score implements Comparable <Score>, Serializable {
 
     @Override
     public String toString() {
-        return name+"   -   "+score;
+        return name+" - "+score;
     }
 }
