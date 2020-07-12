@@ -48,12 +48,12 @@ public abstract class HighScores implements Serializable {
         }
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         highScores.add(new Score("chojrak", 99999));
         highScores.add(new Score("Piotr M", 99999));
         highScores.add(new Score("piotrolot1", 0));
         highScores.add(new Score("piotrek96k", 0));
         System.out.println(goodGame(new Score("test", 11)));
         saveScores();
-    }
+    }*/
 }
