@@ -10,7 +10,6 @@ public class Player extends Movable {
     public Player() {
         super.lastMoveSnap = 0;
         super.speed = 4;
-        super.pic = new ImageIcon("src\\main\\resources\\pacman\\pacmanClosed.png");
         this.points = 0;
         this.lifes = 3;
 
@@ -38,6 +37,7 @@ public class Player extends Movable {
         this.currentVerticalPosition = 540;
         this.lastMove = "left";
         this.lastPressedMove = "left";
+        this.pic = new ImageIcon("src\\main\\resources\\pacman\\pacmanClosed.png");
     }
 
 

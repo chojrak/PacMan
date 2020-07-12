@@ -46,6 +46,12 @@ public class Events {
                 ghost2.setEatableGhosts(true);
                 ghost3.setEatableGhosts(true);
                 ghost4.setEatableGhosts(true);
+                pacman.lastMoveSnap = pacman.movesCounter;
+                ghost1.reverseMove();
+                ghost2.reverseMove();
+                ghost3.reverseMove();
+                ghost4.reverseMove();
+
             }
 
 
@@ -82,26 +88,19 @@ public class Events {
                 && pacman.currentVerticalPosition / 24 == ghost1.currentVerticalPosition / 24
                 && pacman.currentHorizontalPosition / 24 == ghost1.currentHorizontalPosition / 24) {
             map.eatenGhost = ghost1.getName();
-            ghost1.reverseMove();
-            pacman.lastMoveSnap = Integer.valueOf(pacman.movesCounter);
+
         } else if (ghost2.isEatableGhosts() == true
                 && pacman.currentVerticalPosition / 24 == ghost2.currentVerticalPosition / 24
                 && pacman.currentHorizontalPosition / 24 == ghost2.currentHorizontalPosition / 24) {
             map.eatenGhost = ghost2.getName();
-            ghost2.reverseMove();
-            pacman.lastMoveSnap = Integer.valueOf(pacman.movesCounter);
         } else if (ghost3.isEatableGhosts() == true
                 && pacman.currentVerticalPosition / 24 == ghost3.currentVerticalPosition / 24
                 && pacman.currentHorizontalPosition / 24 == ghost3.currentHorizontalPosition / 24) {
             map.eatenGhost = ghost3.getName();
-            ghost3.reverseMove();
-            pacman.lastMoveSnap = Integer.valueOf(pacman.movesCounter);
         } else if (ghost4.isEatableGhosts() == true
                 && pacman.currentVerticalPosition / 24 == ghost4.currentVerticalPosition / 24
                 && pacman.currentHorizontalPosition / 24 == ghost4.currentHorizontalPosition / 24) {
             map.eatenGhost = ghost4.getName();
-            ghost4.reverseMove();
-            pacman.lastMoveSnap = Integer.valueOf(pacman.movesCounter);
         }
     }
 

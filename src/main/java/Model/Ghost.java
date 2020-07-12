@@ -7,6 +7,7 @@ public class Ghost extends Movable {
     private String nextMove;
     private String name;
     private String box;
+    private String controller;
 
     private boolean eatableGhosts;
 
@@ -14,6 +15,7 @@ public class Ghost extends Movable {
     public Ghost(String name) {
         this.name = name;
         this.eatableGhosts = false;
+        this.controller = "computer";
         super.lastMoveSnap = 0;
         super.speed = 3;
         super.level = 1;
@@ -30,11 +32,19 @@ public class Ghost extends Movable {
         this.eatableGhosts = eatableGhosts;
     }
 
+    public void setController(String controller) {
+        this.controller = controller;
+    }
+
+    public void setNextMove(String nextMove) {
+        this.nextMove = nextMove;
+    }
+
     public String getName() {
         return name;
     }
 
-    public void getNextMove() {
+    public void getNextMove() { if (controller.equals("computer")){
         double random = Math.random() * 4;
         if (random <= 1)
             nextMove = "left";
@@ -43,14 +53,14 @@ public class Ghost extends Movable {
         if (random > 2 && random <= 3)
             nextMove = "up";
         if (random > 3 && random <= 4)
-            nextMove = "down";
+            nextMove = "down";}
     }
 
     public void reverseMove() {
-        if (lastMove.equals("up")) lastMove = "down";
-        else if (lastMove.equals("down")) lastMove = "up";
-        else if (lastMove.equals("left")) lastMove = "right";
-        else if (lastMove.equals("right")) lastMove = "left";
+        if (nextMove.equals("up")) nextMove = "down";
+        else if (nextMove.equals("down")) nextMove = "up";
+        else if (nextMove.equals("left")) nextMove = "right";
+        else if (nextMove.equals("right")) nextMove = "left";
     }
 
     public void resetPosition() {

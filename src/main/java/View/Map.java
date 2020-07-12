@@ -21,7 +21,7 @@ public class Map extends JPanel {
     JLabel ghost2 = new JLabel(clyde.getPic());
     JLabel ghost3 = new JLabel(inky.getPic());
     JLabel ghost4 = new JLabel(pinky.getPic());
-    JLabel points = new JLabel();
+    static JLabel news = new JLabel();
     RightPanel right;
     LeftPanel left;
     boolean notCatched = true;
@@ -48,19 +48,28 @@ public class Map extends JPanel {
 
     }
 
+    public void getReady(){
+        labelCreator(news, "FOR 2 PLAYERS PRESS \"ENTER\"", Color.YELLOW, 0, 372, 672, 50);
+        add(news);
+        repaint();
+        sleep(2000);
+        labelCreator(news, "READY?!", Color.YELLOW, 0, 372, 672, 50);
+        add(news);
+        repaint();
+        steady();
+    }
+
+    public void steady(){
+        sleep(2000);
+        news.setText("");
+        animation();
+    }
+
 
     public void animation() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         while (notCatched == true && eatenGhost.equals("none")) {
-            try {
-                Thread.sleep(15);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sleep(15);
 
             player.movePlayer();
             blinky.movePlayer();
@@ -83,11 +92,7 @@ public class Map extends JPanel {
 
 
         if (notCatched == false && player.getLifes() > 0) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sleep(1000);
             player.resetPosition();
             blinky.resetPosition();
             clyde.resetPosition();
@@ -101,6 +106,7 @@ public class Map extends JPanel {
             int vertical = player.getCurrentVerticalPosition();
             player.setCurrentHorizontalPosition(-1000);
             player.setCurrentVerticalPosition(-1000);
+
             if (eatenGhost.equals("blinky")) {
                 blinky.setCurrentHorizontalPosition(-1000);
                 blinky.setCurrentVerticalPosition(-1000);
@@ -118,14 +124,10 @@ public class Map extends JPanel {
                 pinky.setCurrentVerticalPosition(-1000);
             }
 
-            labelCreator(points, "200", Color.cyan, horizontal - 24, vertical - 24, 50, 50);
-            add(points);
+            labelCreator(news, "200", Color.cyan, horizontal - 24, vertical - 24, 50, 50);
+            add(news);
             repaint();
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sleep(500);
             player.setCurrentVerticalPosition(vertical);
             player.setCurrentHorizontalPosition(horizontal);
             if (eatenGhost.equals("blinky")) blinky.resetPosition();
@@ -133,19 +135,15 @@ public class Map extends JPanel {
             if (eatenGhost.equals("inky")) inky.resetPosition();
             if (eatenGhost.equals("pinky")) pinky.resetPosition();
             eatenGhost = "none";
-            points.setText("");
+            news.setText("");
             player.addPoints(200);
             repaint();
-
             animation();
 
 
         } else {
-            JLabel gameOver = new JLabel("GAME OVER", SwingConstants.CENTER);
-            gameOver.setFont(new Font("OCR A Extended", Font.BOLD, 18));
-            gameOver.setForeground(Color.RED);
-            gameOver.setBounds(0, 372, 672, 50);
-            this.add(gameOver);
+            labelCreator(news, "GAME OVER", Color.RED, 0,372,672,50);
+            this.add(news);
             repaint();
 
         }
@@ -158,9 +156,19 @@ public class Map extends JPanel {
 
     public void labelCreator(JLabel label, String text, Color color, int x, int y, int width, int height) {
         label.setText(text);
+        label.setHorizontalAlignment(SwingConstants.CENTER);
         label.setFont(new Font("OCR A Extended", Font.BOLD, 18));
         label.setForeground(color);
         label.setBounds(x, y, width, height);
+    }
+
+    public void sleep (int milis)
+    {
+        try {
+            Thread.sleep(milis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

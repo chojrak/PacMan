@@ -21,7 +21,7 @@ public class Main {
         game.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         game.setVisible(true);
         game.pack();
-        map1.animation();
+        map1.getReady();
 
 
     }
