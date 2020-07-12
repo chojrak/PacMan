@@ -42,6 +42,7 @@ public class Events {
                 pacman.addPoints(10);
                 Sounds.eatDotSound();
             } else if (dot.equals("bigDot")) {
+               // Sounds.eatFruitSound();
                 ghost1.setEatableGhosts(true);
                 ghost2.setEatableGhosts(true);
                 ghost3.setEatableGhosts(true);
@@ -51,6 +52,7 @@ public class Events {
                 ghost2.reverseMove();
                 ghost3.reverseMove();
                 ghost4.reverseMove();
+              //  Sounds.intermission();
 
             }
 
@@ -101,6 +103,7 @@ public class Events {
                 && pacman.currentVerticalPosition / 24 == ghost4.currentVerticalPosition / 24
                 && pacman.currentHorizontalPosition / 24 == ghost4.currentHorizontalPosition / 24) {
             map.eatenGhost = ghost4.getName();
+            Sounds.eatGhostSound();
         }
     }
 

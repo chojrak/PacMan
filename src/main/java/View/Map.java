@@ -29,6 +29,7 @@ public class Map extends JPanel {
 
 
     public Map(JFrame window, RightPanel right, LeftPanel left) {
+        Sounds.music();
         this.window = window;
         this.right = right;
         this.left = left;
@@ -46,6 +47,7 @@ public class Map extends JPanel {
         add(jb);
 
 
+
     }
 
     public void getReady(){
@@ -60,7 +62,7 @@ public class Map extends JPanel {
     }
 
     public void steady(){
-        sleep(2000);
+        sleep(1000);
         news.setText("");
         animation();
     }

@@ -15,7 +15,6 @@ public class Container extends JPanel {
         this.left = left;
         this.right = right;
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        Sounds.music();
         add(left);
         add(map);
         add(right);
