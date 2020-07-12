@@ -9,6 +9,7 @@ import java.io.IOException;
 public class RightPanel extends JPanel {
     private JFrame window;
     private JLabel scoreValue = new JLabel();
+    private JLabel levelValue = new JLabel();
     private JLabel life1 = new JLabel();
 
     public RightPanel(JFrame window) {
@@ -28,6 +29,13 @@ public class RightPanel extends JPanel {
         labelCreator(lifes, "LIFES:", gameFont, Color.WHITE, 0, 72, 75, 24);
         add(lifes);
 
+        JLabel level = new JLabel();
+        labelCreator(level, "LEVEL:", gameFont, Color.WHITE, 0, 150, 75, 24);
+        add(level);
+
+        labelCreator(levelValue, String.valueOf(Map.player.getLevel()), gameFont, Color.WHITE, 70, 150, 58, 24);
+        add(levelValue);
+
 
 
 
@@ -37,12 +45,6 @@ public class RightPanel extends JPanel {
         label.setText(text);
         label.setFont(font);
         label.setForeground(color);
-        label.setBounds(x, y, width, height);
-    }
-
-    public void labelCreator(JLabel label, String text, ImageIcon img, int x, int y, int width, int height) {
-        label.setText(text);
-        label.setIcon(img);
         label.setBounds(x, y, width, height);
     }
 
@@ -56,6 +58,7 @@ public class RightPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         scoreValue.setText(String.valueOf(Map.player.getPoints()));
+        levelValue.setText(String.valueOf(Map.player.getLevel()));
 
         for(int i = 1; i<= Map.player.getLifes(); i++)
         {

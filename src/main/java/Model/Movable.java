@@ -49,6 +49,10 @@ public abstract class Movable {
         return lastMoveSnap;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
     public void setLastMove(String lastMove) {
         if (lastMove == "left" || lastMove == "right" || lastMove == "up" || lastMove == "down")
             this.lastMove = lastMove;

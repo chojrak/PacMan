@@ -16,95 +16,47 @@ public class Sounds {
     static boolean musicOn = false;
 
     public static void music() {
-
-        try {
-            Clip clip = AudioSystem.getClip();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src\\main\\resources\\music\\beginning.wav"));
-            if (musicOn == false) clip.open(ais);
-            musicOn = true;
-            clip.addLineListener(new musicEnd());
-            clip.loop(0);
-
-
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
-            ex.printStackTrace();
-        }
+        newSound(true, new File("src\\main\\resources\\music\\beginning.wav"));
     }
 
     public static void intermission() {
-
-        try {
-            Clip clip = AudioSystem.getClip();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src\\main\\resources\\music\\pacman_intermission.wav"));
-            //  if (musicOn == false) clip.open(ais);
-            musicOn = true;
-            clip.addLineListener(new musicEnd());
-            clip.loop(0);
-
-
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
-            ex.printStackTrace();
-        }
+        newSound(false, new File("src\\main\\resources\\music\\pacman_intermission.wav"));
     }
 
     public static void eatDotSound() {
-        try {
-            Clip clip = AudioSystem.getClip();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src\\main\\resources\\music\\chaps4.wav"));
-            if (musicOn == false) clip.open(ais);
-            musicOn = true;
-            clip.addLineListener(new musicEnd());
-            clip.loop(0);
-
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
-            ex.printStackTrace();
-        }
+        newSound(true, new File("src\\main\\resources\\music\\chaps4.wav"));
     }
 
     public static void eatFruitSound() {
-        try {
-            Clip clip = AudioSystem.getClip();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src\\main\\resources\\music\\fruit.wav"));
-            //  if (musicOn == false) clip.open(ais);
-            musicOn = true;
-            clip.addLineListener(new musicEnd());
-            clip.loop(0);
-
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
-            ex.printStackTrace();
-        }
+        newSound(false, new File("src\\main\\resources\\music\\fruit.wav"));
     }
 
     public static void deathSound() {
-        try {
-            Clip clip = AudioSystem.getClip();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src\\main\\resources\\music\\death.wav"));
-            clip.open(ais);
-            musicOn = true;
-            clip.addLineListener(new musicEnd());
-            clip.loop(0);
-
-        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
-            ex.printStackTrace();
-        }
+        newSound(false, new File("src\\main\\resources\\music\\death.wav"));
     }
 
 
     public static void eatGhostSound() {
+        newSound(false, new File("src\\main\\resources\\music\\pacman_eatghost.wav"));
+    }
 
+    public static void newSound(boolean prioritySound, File file) {
         try {
             Clip clip = AudioSystem.getClip();
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src\\main\\resources\\music\\pacman_eatghost.wav"));
-            //  if (musicOn == false) clip.open(ais);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(file);
+            if (prioritySound) {
+                if (musicOn == false) clip.open(ais);
+            }
             musicOn = true;
             clip.addLineListener(new musicEnd());
             clip.loop(0);
-
 
         } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
             ex.printStackTrace();
         }
     }
+
+
 }
 
 

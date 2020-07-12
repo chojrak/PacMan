@@ -12,6 +12,13 @@ public class LeftPanel extends JPanel {
         this.setBackground(Color.BLACK);
     }
 
+    public void labelCreator(JLabel label, String text, Font font, Color color, int x, int y, int width, int height) {
+        label.setText(text);
+        label.setFont(font);
+        label.setForeground(color);
+        label.setBounds(x, y, width, height);
+    }
+
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(128, 720);

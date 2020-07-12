@@ -24,6 +24,7 @@ public class Map extends JPanel {
     static JLabel news = new JLabel();
     RightPanel right;
     LeftPanel left;
+    public int refresh = 15;
     boolean notCatched = true;
     public String eatenGhost = "none";
 
@@ -71,7 +72,7 @@ public class Map extends JPanel {
     public void animation() {
 
         while (notCatched == true && eatenGhost.equals("none")) {
-            sleep(15);
+            sleep(refresh);
 
             player.movePlayer();
             blinky.movePlayer();
@@ -82,7 +83,7 @@ public class Map extends JPanel {
             repaint();
             right.repaint();
             left.repaint();
-            if (player.getLastMoveSnap() + 500 < player.movesCounter) {
+            if (player.getLastMoveSnap() + 500/blinky.getLevel() < player.movesCounter) {
                 eatenGhost = "none";
                 blinky.setEatableGhosts(false);
                 clyde.setEatableGhosts(false);

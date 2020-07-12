@@ -91,9 +91,9 @@ public class Ghost extends Movable {
 
     @Override
     public void nextPic() {
-        if (eatableGhosts == false)
+        if (!eatableGhosts)
             pic = new ImageIcon("src\\main\\resources\\ghosts\\" + name + "\\" + lastMove + picCounter + ".png");
-        else if (eatableGhosts == true)
+        else if (eatableGhosts)
             pic = new ImageIcon("src\\main\\resources\\ghosts\\blue\\blue" + picCounter + ".png");
     }
 

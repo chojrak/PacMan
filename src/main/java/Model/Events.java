@@ -21,6 +21,7 @@ public class Events {
         eatDot();
         meetGhost();
         eatGhost();
+        clearedMap();
     }
 
     public void eatDot() {
@@ -42,7 +43,7 @@ public class Events {
                 pacman.addPoints(10);
                 Sounds.eatDotSound();
             } else if (dot.equals("bigDot")) {
-               // Sounds.eatFruitSound();
+             //   Sounds.eatFruitSound();
                 ghost1.setEatableGhosts(true);
                 ghost2.setEatableGhosts(true);
                 ghost3.setEatableGhosts(true);
@@ -103,9 +104,32 @@ public class Events {
                 && pacman.currentVerticalPosition / 24 == ghost4.currentVerticalPosition / 24
                 && pacman.currentHorizontalPosition / 24 == ghost4.currentHorizontalPosition / 24) {
             map.eatenGhost = ghost4.getName();
-            Sounds.eatGhostSound();
+          //  Sounds.eatGhostSound();
         }
     }
 
+    public void clearedMap() {
+        boolean test = false;
+        for (int j = 0; j <= 29 && test == false; j++) {
+            for (int i = 0; i <= 27 && test == false; i++) {
+                if (!MapStructure.Map[j][i].getTreat().equals("none")) test = true;
+            }
+        }
+        if(!test) {map.setNotCatched(false);
+
+            MapStructure.fillWithTreats();
+
+            ghost1.level++;
+            ghost2.level++;
+            ghost3.level++;
+            ghost4.level++;
+            pacman.level++;
+            if (ghost1.speed< 5) {ghost1.speed++;
+            ghost2.speed++;
+            ghost3.speed++;
+            ghost4.speed++;}
+            else map.refresh = map.refresh/3*2;
+        }
+    }
 
 }
