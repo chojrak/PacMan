@@ -46,11 +46,16 @@ public class Map extends JPanel {
     }
 
 
-    public Map(JFrame window, RightPanel right, LeftPanel left) {
+    public Map(JFrame window, RightPanel right, LeftPanel left, boolean human) {
         Sounds.music();
         this.window = window;
         this.right = right;
         this.left = left;
+        if (human) {
+            blinky.setController("human");
+        } else {
+            blinky.setController("computer");
+        }
         add(this.player1);
         add(this.ghost1);
         add(this.ghost2);
@@ -69,10 +74,6 @@ public class Map extends JPanel {
     }
 
     public void getReady(){
-        labelCreator(news, "FOR 2 PLAYERS PRESS \"ENTER\"", Color.YELLOW, 0, 372, 672, 50);
-        add(news);
-        repaint();
-        sleep(2000);
         labelCreator(news, "READY?!", Color.YELLOW, 0, 372, 672, 50);
         add(news);
         repaint();
@@ -80,7 +81,7 @@ public class Map extends JPanel {
     }
 
     public void steady(){
-        sleep(1000);
+        sleep(2000);
         news.setText("");
         animation();
     }
@@ -107,14 +108,17 @@ public class Map extends JPanel {
                 String name = JOptionPane.showInputDialog(this, "Good Game, enter Your name:");
                 HighScores.addRecord(new Score(name, player.getPoints()));
             }
-            player = new Player();
-            blinky = new Ghost("blinky");
-            clyde = new Ghost("clyde");
-            inky = new Ghost("inky");
-            pinky = new Ghost("pinky");
-            repaint();
-            MapStructure.fillWithTreats();
-            getReady();
+            sleep(1500);
+            player.restartPlayer();
+            JFrame newGame = new JFrame("PacMan");
+            Menu panel = new Menu(newGame);
+            newGame.add(panel);
+            newGame.setLocation(window.getLocation());
+            window.setVisible(false);
+            window.dispose();
+            newGame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            newGame.setVisible(true);
+            newGame.pack();
         }
 
     }

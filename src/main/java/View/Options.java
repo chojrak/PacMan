@@ -34,7 +34,6 @@ public class Options extends JPanel {
 			JFrame back = new JFrame("PacMan");
 		
 			back.add(new Menu(back));
-			back.setLocationByPlatform(true);
 			options.setVisible(false);
 			options.dispose();
 			back.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

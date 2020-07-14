@@ -45,6 +45,15 @@ public class Player extends Movable {
         this.pic = new ImageIcon("src\\main\\resources\\pacman\\pacmanClosed.png");
     }
 
+    public void restartPlayer(){
+        resetPosition();
+        this.lastMoveSnap = 0;
+        this.speed = 4;
+        this.points = 0;
+        this.lifes = 3;
+        this.level = 0;
+    }
+
 
     @Override
     public void nextPic() {

@@ -14,13 +14,26 @@ import javax.swing.SwingUtilities;
 public class Sounds {
 
     static boolean musicOn = false;
+    static boolean interMSSound = false;
 
     public static void music() {
         newSound(true, new File("src\\main\\resources\\music\\beginning.wav"));
     }
 
     public static void intermission() {
-        newSound(false, new File("src\\main\\resources\\music\\pacman_intermission.wav"));
+        if (!interMSSound) {
+        try {
+            Clip clip = AudioSystem.getClip();
+            AudioInputStream ais = AudioSystem.getAudioInputStream(new File("src\\main\\resources\\music\\pacman_intermission.wav"));
+            clip.open(ais);
+            clip.setFramePosition(0);
+            clip.start();
+            interMSSound = true;
+            clip.addLineListener(new interMSSoundEnd());
+
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException ex) {
+            ex.printStackTrace();
+        }}
     }
 
     public static void eatDotSound() {
@@ -74,6 +87,13 @@ class musicEnd implements LineListener {
     @Override
     public void update(LineEvent event) {
         if (event.getType() == LineEvent.Type.STOP) Sounds.musicOn = false;
+    }
+}
+
+class interMSSoundEnd implements LineListener {
+    @Override
+    public void update(LineEvent event) {
+        if (event.getType() == LineEvent.Type.STOP) Sounds.interMSSound = false;
     }
 }
 

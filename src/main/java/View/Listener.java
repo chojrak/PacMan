@@ -22,8 +22,6 @@ public class Listener implements KeyListener {
         if (e.getExtendedKeyCode() == KeyEvent.VK_UP) map.player.setLastPressedMove("up");
         if (e.getExtendedKeyCode() == KeyEvent.VK_DOWN) map.player.setLastPressedMove("down");
 
-        if (e.getExtendedKeyCode() == KeyEvent.VK_ENTER) map.blinky.setController("human");
-
         if (e.getExtendedKeyCode() == KeyEvent.VK_D) map.blinky.setNextMove("right");
         if (e.getExtendedKeyCode() == KeyEvent.VK_A) map.blinky.setNextMove("left");
         if (e.getExtendedKeyCode() == KeyEvent.VK_W) map.blinky.setNextMove("up");
