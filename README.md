@@ -18,7 +18,6 @@ This project is simple  game based on classic Pacman arcade game. The project wa
 Project is created with:
 * Java version: 8
 * Junit version: 4.13
-* PostgreSQL: 42.2.14
 * Java Swing
 
 ## Setup
@@ -35,8 +34,5 @@ To-do list:
 * graphic menu,
 * new bonuses,
 * character customization options.
-
-## License 
-* PostgreSQL License.
 
 Copyright 2020 <a href="https://github.com/chojrak" rel="nofollow">Rafał Chaciński</a> <a href="https://github.com/MalczewskiPiotr" rel="nofollow">Piotr Malczewski</a>
